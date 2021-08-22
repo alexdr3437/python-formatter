@@ -1,0 +1,1223 @@
+Module(
+    body=[
+        Import(
+            names=[
+                alias(name='addpath')]),
+        ImportFrom(
+            module='selenium',
+            names=[
+                alias(name='webdriver')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver.common.keys',
+            names=[
+                alias(name='Keys')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver.support.ui',
+            names=[
+                alias(name='WebDriverWait')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver.support',
+            names=[
+                alias(name='expected_conditions', asname='EC')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver.common.by',
+            names=[
+                alias(name='By')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver.common.action_chains',
+            names=[
+                alias(name='ActionChains')],
+            level=0),
+        ImportFrom(
+            module='selenium.webdriver',
+            names=[
+                alias(name='FirefoxOptions')],
+            level=0),
+        Import(
+            names=[
+                alias(name='time')]),
+        Import(
+            names=[
+                alias(name='string')]),
+        Import(
+            names=[
+                alias(name='random')]),
+        Import(
+            names=[
+                alias(name='numpy', asname='np')]),
+        Import(
+            names=[
+                alias(name='scipy.interpolate', asname='si')]),
+        Import(
+            names=[
+                alias(name='requests')]),
+        Import(
+            names=[
+                alias(name='speech_recognition', asname='sr')]),
+        ImportFrom(
+            module='os',
+            names=[
+                alias(name='path')],
+            level=0),
+        ImportFrom(
+            module='pydub',
+            names=[
+                alias(name='AudioSegment')],
+            level=0),
+        Import(
+            names=[
+                alias(name='subprocess')]),
+        Import(
+            names=[
+                alias(name='re')]),
+        ImportFrom(
+            module='net_manager',
+            names=[
+                alias(name='reset_circuit')],
+            level=0),
+        ImportFrom(
+            module='human_spoofer',
+            names=[
+                alias(name='*')],
+            level=0),
+        ImportFrom(
+            module='captcha_solvers',
+            names=[
+                alias(name='*')],
+            level=0),
+        ImportFrom(
+            module='accounts',
+            names=[
+                alias(name='*')],
+            level=0),
+        ImportFrom(
+            module='settings',
+            names=[
+                alias(name='*')],
+            level=0),
+        ImportFrom(
+            module='kill',
+            names=[
+                alias(name='kill_all')],
+            level=0),
+        FunctionDef(
+            name='log',
+            args=arguments(
+                posonlyargs=[],
+                args=[
+                    arg(arg='S'),
+                    arg(arg='N')],
+                kwonlyargs=[],
+                kw_defaults=[],
+                defaults=[
+                    Constant(value='\n')]),
+            body=[
+                With(
+                    items=[
+                        withitem(
+                            context_expr=Call(
+                                func=Name(id='open', ctx=Load()),
+                                args=[
+                                    Name(id='ACCOUNT_LOG_PATH', ctx=Load()),
+                                    Constant(value='a')],
+                                keywords=[]),
+                            optional_vars=Name(id='f', ctx=Store()))],
+                    body=[
+                        Expr(
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='f', ctx=Load()),
+                                    attr='write',
+                                    ctx=Load()),
+                                args=[
+                                    Call(
+                                        func=Attribute(
+                                            value=Constant(value='{} : {}{}'),
+                                            attr='format',
+                                            ctx=Load()),
+                                        args=[
+                                            Call(
+                                                func=Attribute(
+                                                    value=Call(
+                                                        func=Attribute(
+                                                            value=Name(id='datetime', ctx=Load()),
+                                                            attr='now',
+                                                            ctx=Load()),
+                                                        args=[],
+                                                        keywords=[]),
+                                                    attr='strftime',
+                                                    ctx=Load()),
+                                                args=[
+                                                    Constant(value='%b-%d-%Y %H:%M:%S')],
+                                                keywords=[]),
+                                            Name(id='S', ctx=Load()),
+                                            Name(id='end', ctx=Load())],
+                                        keywords=[])],
+                                keywords=[]))]),
+                If(
+                    test=Name(id='verbose', ctx=Load()),
+                    body=[
+                        Expr(
+                            value=Call(
+                                func=Name(id='print', ctx=Load()),
+                                args=[
+                                    Name(id='S', ctx=Load())],
+                                keywords=[
+                                    keyword(
+                                        arg='end',
+                                        value=Name(id='end', ctx=Load()))]))],
+                    orelse=[])],
+            decorator_list=[]),
+        If(
+            test=UnaryOp(
+                op=Not(),
+                operand=Name(id='verbose', ctx=Load())),
+            body=[
+                Assign(
+                    targets=[
+                        Name(id='print', ctx=Store())],
+                    value=Name(id='log', ctx=Load()))],
+            orelse=[]),
+        FunctionDef(
+            name='modify_name',
+            args=arguments(
+                posonlyargs=[],
+                args=[
+                    arg(arg='username')],
+                kwonlyargs=[],
+                kw_defaults=[],
+                defaults=[]),
+            body=[
+                If(
+                    test=Compare(
+                        left=Call(
+                            func=Attribute(
+                                value=Name(id='random', ctx=Load()),
+                                attr='uniform',
+                                ctx=Load()),
+                            args=[
+                                Constant(value=0),
+                                Constant(value=1)],
+                            keywords=[]),
+                        ops=[
+                            Lt()],
+                        comparators=[
+                            Constant(value=0.5)]),
+                    body=[
+                        Assign(
+                            targets=[
+                                Name(id='username', ctx=Store())],
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='username', ctx=Load()),
+                                    attr='lower',
+                                    ctx=Load()),
+                                args=[],
+                                keywords=[]))],
+                    orelse=[]),
+                If(
+                    test=Compare(
+                        left=Call(
+                            func=Attribute(
+                                value=Name(id='random', ctx=Load()),
+                                attr='uniform',
+                                ctx=Load()),
+                            args=[
+                                Constant(value=0),
+                                Constant(value=1)],
+                            keywords=[]),
+                        ops=[
+                            Lt()],
+                        comparators=[
+                            Constant(value=0.5)]),
+                    body=[
+                        Assign(
+                            targets=[
+                                Name(id='username', ctx=Store())],
+                            value=Call(
+                                func=Attribute(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='username', ctx=Load()),
+                                            attr='replace',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='-'),
+                                            Constant(value='')],
+                                        keywords=[]),
+                                    attr='replace',
+                                    ctx=Load()),
+                                args=[
+                                    Constant(value='_'),
+                                    Constant(value='')],
+                                keywords=[]))],
+                    orelse=[]),
+                Return(
+                    value=Name(id='username', ctx=Load()))],
+            decorator_list=[]),
+        Assign(
+            targets=[
+                Name(id='get_element', ctx=Store())],
+            value=Lambda(
+                args=arguments(
+                    posonlyargs=[],
+                    args=[
+                        arg(arg='xpath')],
+                    kwonlyargs=[],
+                    kw_defaults=[],
+                    defaults=[]),
+                body=Call(
+                    func=Attribute(
+                        value=Call(
+                            func=Name(id='WebDriverWait', ctx=Load()),
+                            args=[
+                                Name(id='driver', ctx=Load()),
+                                Constant(value=15)],
+                            keywords=[]),
+                        attr='until',
+                        ctx=Load()),
+                    args=[
+                        Call(
+                            func=Attribute(
+                                value=Name(id='EC', ctx=Load()),
+                                attr='element_to_be_clickable',
+                                ctx=Load()),
+                            args=[
+                                Tuple(
+                                    elts=[
+                                        Attribute(
+                                            value=Name(id='By', ctx=Load()),
+                                            attr='XPATH',
+                                            ctx=Load()),
+                                        Name(id='xpath', ctx=Load())],
+                                    ctx=Load())],
+                            keywords=[])],
+                    keywords=[]))),
+        Assign(
+            targets=[
+                Name(id='get_element_t', ctx=Store())],
+            value=Lambda(
+                args=arguments(
+                    posonlyargs=[],
+                    args=[
+                        arg(arg='xpath'),
+                        arg(arg='t')],
+                    kwonlyargs=[],
+                    kw_defaults=[],
+                    defaults=[]),
+                body=Call(
+                    func=Attribute(
+                        value=Call(
+                            func=Name(id='WebDriverWait', ctx=Load()),
+                            args=[
+                                Name(id='driver', ctx=Load()),
+                                Name(id='t', ctx=Load())],
+                            keywords=[]),
+                        attr='until',
+                        ctx=Load()),
+                    args=[
+                        Call(
+                            func=Attribute(
+                                value=Name(id='EC', ctx=Load()),
+                                attr='element_to_be_clickable',
+                                ctx=Load()),
+                            args=[
+                                Tuple(
+                                    elts=[
+                                        Attribute(
+                                            value=Name(id='By', ctx=Load()),
+                                            attr='XPATH',
+                                            ctx=Load()),
+                                        Name(id='xpath', ctx=Load())],
+                                    ctx=Load())],
+                            keywords=[])],
+                    keywords=[]))),
+        Assign(
+            targets=[
+                Name(id='port', ctx=Store())],
+            value=Constant(value=9072)),
+        While(
+            test=Constant(value=True),
+            body=[
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='CREATE ACCOUNT SCRIPT HAS STARTED')],
+                        keywords=[])),
+                Assign(
+                    targets=[
+                        Name(id='account_created', ctx=Store())],
+                    value=Constant(value=False)),
+                Assign(
+                    targets=[
+                        Name(id='failed_counter', ctx=Store())],
+                    value=UnaryOp(
+                        op=USub(),
+                        operand=Constant(value=1))),
+                While(
+                    test=Compare(
+                        left=Name(id='account_created', ctx=Load()),
+                        ops=[
+                            Eq()],
+                        comparators=[
+                            Constant(value=False)]),
+                    body=[
+                        Assign(
+                            targets=[
+                                Name(id='failed_counter', ctx=Store())],
+                            value=BinOp(
+                                left=BinOp(
+                                    left=Name(id='failed_counter', ctx=Load()),
+                                    op=Add(),
+                                    right=BinOp(
+                                        left=Constant(value=1),
+                                        op=Mult(),
+                                        right=Constant(value=3))),
+                                op=Add(),
+                                right=Constant(value=1))),
+                        If(
+                            test=BoolOp(
+                                op=And(),
+                                values=[
+                                    Name(id='failed_counter', ctx=Load()),
+                                    Name(id='DEPLOYED', ctx=Load())]),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Change Tor circuit....')],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='reset_circuit', ctx=Load()),
+                                        args=[
+                                            Name(id='port', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Done.')],
+                                        keywords=[]))],
+                            orelse=[]),
+                        With(
+                            items=[
+                                withitem(
+                                    context_expr=Call(
+                                        func=Name(id='open', ctx=Load()),
+                                        args=[
+                                            BinOp(
+                                                left=Name(id='HOME_PATH', ctx=Load()),
+                                                op=Add(),
+                                                right=Constant(value='user_agents.csv')),
+                                            Constant(value='r')],
+                                        keywords=[]),
+                                    optional_vars=Name(id='fp', ctx=Store()))],
+                            body=[
+                                Assign(
+                                    targets=[
+                                        Name(id='useragent', ctx=Store())],
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Name(id='random', ctx=Load()),
+                                                    attr='choice',
+                                                    ctx=Load()),
+                                                args=[
+                                                    Call(
+                                                        func=Attribute(
+                                                            value=Name(id='fp', ctx=Load()),
+                                                            attr='readlines',
+                                                            ctx=Load()),
+                                                        args=[],
+                                                        keywords=[])],
+                                                keywords=[]),
+                                            attr='strip',
+                                            ctx=Load()),
+                                        args=[],
+                                        keywords=[]))]),
+                        Expr(
+                            value=Call(
+                                func=Name(id='log', ctx=Load()),
+                                args=[
+                                    BinOp(
+                                        left=Constant(value='User agent: '),
+                                        op=Add(),
+                                        right=Call(
+                                            func=Name(id='str', ctx=Load()),
+                                            args=[
+                                                Name(id='useragent', ctx=Load())],
+                                            keywords=[]))],
+                                keywords=[])),
+                        Assign(
+                            targets=[
+                                Name(id='profile', ctx=Store())],
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='webdriver', ctx=Load()),
+                                    attr='FirefoxProfile',
+                                    ctx=Load()),
+                                args=[],
+                                keywords=[])),
+                        If(
+                            test=Name(id='DEPLOYED', ctx=Load()),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='profile', ctx=Load()),
+                                            attr='set_preference',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='network.proxy.type'),
+                                            Constant(value=1)],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='profile', ctx=Load()),
+                                            attr='set_preference',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='network.proxy.socks'),
+                                            Constant(value='127.0.0.1')],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='profile', ctx=Load()),
+                                            attr='set_preference',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='network.proxy.socks_port'),
+                                            Call(
+                                                func=Name(id='int', ctx=Load()),
+                                                args=[
+                                                    Name(id='port', ctx=Load())],
+                                                keywords=[])],
+                                        keywords=[]))],
+                            orelse=[]),
+                        Expr(
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='profile', ctx=Load()),
+                                    attr='set_preference',
+                                    ctx=Load()),
+                                args=[
+                                    Constant(value='general.useragent.override'),
+                                    Name(id='useragent', ctx=Load())],
+                                keywords=[])),
+                        Assign(
+                            targets=[
+                                Name(id='driver', ctx=Store())],
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='webdriver', ctx=Load()),
+                                    attr='Firefox',
+                                    ctx=Load()),
+                                args=[],
+                                keywords=[
+                                    keyword(
+                                        arg='firefox_profile',
+                                        value=Name(id='profile', ctx=Load()))])),
+                        Try(
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Getting webpage...')],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='driver', ctx=Load()),
+                                            attr='get',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='https://www.reddit.com/register/?dest= https%3A%2F%2Fwww.reddit.com%2F')],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Proceeding to register page')],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='continue_btn', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='get_element', ctx=Load()),
+                                        args=[
+                                            Constant(value="//button[@type= 'submit']")],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='human_like_mouse_move', ctx=Load()),
+                                        args=[
+                                            Name(id='driver', ctx=Load()),
+                                            Name(id='continue_btn', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='continue_btn', ctx=Load()),
+                                            attr='click',
+                                            ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Generating username and password...')],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='username', ctx=Store())],
+                                    value=Attribute(
+                                        value=Call(
+                                            func=Name(id='get_element', ctx=Load()),
+                                            args=[
+                                                Constant(value="//a[@class= 'Onboarding__usernameSuggestion']")],
+                                            keywords=[]),
+                                        attr='text',
+                                        ctx=Load())),
+                                Assign(
+                                    targets=[
+                                        Name(id='password', ctx=Store())],
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Constant(value=''),
+                                            attr='join',
+                                            ctx=Load()),
+                                        args=[
+                                            GeneratorExp(
+                                                elt=Call(
+                                                    func=Attribute(
+                                                        value=Call(
+                                                            func=Attribute(
+                                                                value=Name(id='random', ctx=Load()),
+                                                                attr='SystemRandom',
+                                                                ctx=Load()),
+                                                            args=[],
+                                                            keywords=[]),
+                                                        attr='choice',
+                                                        ctx=Load()),
+                                                    args=[
+                                                        BinOp(
+                                                            left=BinOp(
+                                                                left=Attribute(
+                                                                    value=Name(id='string', ctx=Load()),
+                                                                    attr='ascii_uppercase',
+                                                                    ctx=Load()),
+                                                                op=Add(),
+                                                                right=Attribute(
+                                                                    value=Name(id='string', ctx=Load()),
+                                                                    attr='ascii_lowercase',
+                                                                    ctx=Load())),
+                                                            op=Add(),
+                                                            right=Attribute(
+                                                                value=Name(id='string', ctx=Load()),
+                                                                attr='digits',
+                                                                ctx=Load()))],
+                                                    keywords=[]),
+                                                generators=[
+                                                    comprehension(
+                                                        target=Name(id='_', ctx=Store()),
+                                                        iter=Call(
+                                                            func=Name(id='range', ctx=Load()),
+                                                            args=[
+                                                                Constant(value=12)],
+                                                            keywords=[]),
+                                                        ifs=[],
+                                                        is_async=0)])],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='username', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='modify_name', ctx=Load()),
+                                        args=[
+                                            Name(id='username', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            BinOp(
+                                                left=Constant(value='Username: '),
+                                                op=Add(),
+                                                right=Name(id='username', ctx=Load()))],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='type_like_a_human', ctx=Load()),
+                                        args=[
+                                            Call(
+                                                func=Name(id='get_element', ctx=Load()),
+                                                args=[
+                                                    Constant(value="//input[@id= 'regUsername']")],
+                                                keywords=[]),
+                                            Name(id='username', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='type_like_a_human', ctx=Load()),
+                                        args=[
+                                            Call(
+                                                func=Name(id='get_element', ctx=Load()),
+                                                args=[
+                                                    Constant(value="//input[@id= 'regPassword']")],
+                                                keywords=[]),
+                                            Name(id='password', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='long_wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='captcha_frame', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='get_element', ctx=Load()),
+                                        args=[
+                                            Constant(value="//iframe[@title= 'reCAPTCHA']")],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Attribute(
+                                                value=Name(id='driver', ctx=Load()),
+                                                attr='switch_to',
+                                                ctx=Load()),
+                                            attr='frame',
+                                            ctx=Load()),
+                                        args=[
+                                            Name(id='captcha_frame', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='log', ctx=Load()),
+                                        args=[
+                                            Constant(value='Solving CAPTCHA')],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='chk_box', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='get_element_t', ctx=Load()),
+                                        args=[
+                                            Constant(value="//span[@id= 'recaptcha-anchor']"),
+                                            Constant(value=60)],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='human_like_mouse_move', ctx=Load()),
+                                        args=[
+                                            Name(id='driver', ctx=Load()),
+                                            Name(id='chk_box', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='chk_box', ctx=Load()),
+                                            attr='click',
+                                            ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Attribute(
+                                                value=Name(id='driver', ctx=Load()),
+                                                attr='switch_to',
+                                                ctx=Load()),
+                                            attr='parent_frame',
+                                            ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='challenge_frame', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='get_element', ctx=Load()),
+                                        args=[
+                                            Constant(value="//iframe[@title= 'recaptcha challenge']")],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Attribute(
+                                                value=Name(id='driver', ctx=Load()),
+                                                attr='switch_to',
+                                                ctx=Load()),
+                                            attr='frame',
+                                            ctx=Load()),
+                                        args=[
+                                            Name(id='challenge_frame', ctx=Load())],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[]))],
+                            handlers=[
+                                ExceptHandler(
+                                    type=Name(id='Exception', ctx=Load()),
+                                    name='e',
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Name(id='print', ctx=Load()),
+                                                args=[
+                                                    Call(
+                                                        func=Name(id='str', ctx=Load()),
+                                                        args=[
+                                                            Name(id='e', ctx=Load())],
+                                                        keywords=[])],
+                                                keywords=[])),
+                                        Expr(
+                                            value=Call(
+                                                func=Name(id='log', ctx=Load()),
+                                                args=[
+                                                    Constant(value='FAILED: Something went wrong. Trying again.')],
+                                                keywords=[])),
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Name(id='driver', ctx=Load()),
+                                                    attr='close',
+                                                    ctx=Load()),
+                                                args=[],
+                                                keywords=[])),
+                                        Continue()])],
+                            orelse=[],
+                            finalbody=[]),
+                        If(
+                            test=Call(
+                                func=Name(id='image_challenge', ctx=Load()),
+                                args=[
+                                    Name(id='driver', ctx=Load())],
+                                keywords=[]),
+                            body=[
+                                Break()],
+                            orelse=[])],
+                    orelse=[]),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            BinOp(
+                                left=Constant(value='Success! Account created with username: '),
+                                op=Add(),
+                                right=Name(id='username', ctx=Load()))],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='Creating new keys...')],
+                        keywords=[])),
+                While(
+                    test=Constant(value=True),
+                    body=[
+                        Try(
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='driver', ctx=Load()),
+                                            attr='get',
+                                            ctx=Load()),
+                                        args=[
+                                            Constant(value='https://ssl.reddit.com/prefs/apps/')],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Name(id='long_wait', ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Assign(
+                                    targets=[
+                                        Name(id='btn', ctx=Store())],
+                                    value=Call(
+                                        func=Name(id='get_element', ctx=Load()),
+                                        args=[
+                                            Constant(value="//button[@id= 'create-app-button']")],
+                                        keywords=[])),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Name(id='btn', ctx=Load()),
+                                            attr='click',
+                                            ctx=Load()),
+                                        args=[],
+                                        keywords=[])),
+                                Break()],
+                            handlers=[
+                                ExceptHandler(
+                                    type=Name(id='Exception', ctx=Load()),
+                                    name='e',
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Name(id='log', ctx=Load()),
+                                                args=[
+                                                    Call(
+                                                        func=Name(id='str', ctx=Load()),
+                                                        args=[
+                                                            Name(id='e', ctx=Load())],
+                                                        keywords=[])],
+                                                keywords=[]))])],
+                            orelse=[],
+                            finalbody=[])],
+                    orelse=[]),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='Filling out information...')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='type_like_a_human', ctx=Load()),
+                        args=[
+                            Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//input[@name= 'name']")],
+                                keywords=[]),
+                            Call(
+                                func=Attribute(
+                                    value=Constant(value=''),
+                                    attr='join',
+                                    ctx=Load()),
+                                args=[
+                                    GeneratorExp(
+                                        elt=Call(
+                                            func=Attribute(
+                                                value=Call(
+                                                    func=Attribute(
+                                                        value=Name(id='random', ctx=Load()),
+                                                        attr='SystemRandom',
+                                                        ctx=Load()),
+                                                    args=[],
+                                                    keywords=[]),
+                                                attr='choice',
+                                                ctx=Load()),
+                                            args=[
+                                                BinOp(
+                                                    left=BinOp(
+                                                        left=Attribute(
+                                                            value=Name(id='string', ctx=Load()),
+                                                            attr='ascii_uppercase',
+                                                            ctx=Load()),
+                                                        op=Add(),
+                                                        right=Attribute(
+                                                            value=Name(id='string', ctx=Load()),
+                                                            attr='ascii_lowercase',
+                                                            ctx=Load())),
+                                                    op=Add(),
+                                                    right=Attribute(
+                                                        value=Name(id='string', ctx=Load()),
+                                                        attr='digits',
+                                                        ctx=Load()))],
+                                            keywords=[]),
+                                        generators=[
+                                            comprehension(
+                                                target=Name(id='_', ctx=Store()),
+                                                iter=Call(
+                                                    func=Name(id='range', ctx=Load()),
+                                                    args=[
+                                                        Constant(value=6)],
+                                                    keywords=[]),
+                                                ifs=[],
+                                                is_async=0)])],
+                                keywords=[])],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//input[@id= 'app_type_script']")],
+                                keywords=[]),
+                            attr='click',
+                            ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='type_like_a_human', ctx=Load()),
+                        args=[
+                            Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//input[@name= 'about_url']")],
+                                keywords=[]),
+                            Constant(value='http://localhost:')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='type_like_a_human', ctx=Load()),
+                        args=[
+                            Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//input[@name= 'redirect_uri']")],
+                                keywords=[]),
+                            Constant(value='http://localhost:')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='wait', ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//button[@type= 'submit']")],
+                                keywords=[]),
+                            attr='click',
+                            ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='Retrieving id and secret...')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Call(
+                                func=Name(id='get_element', ctx=Load()),
+                                args=[
+                                    Constant(value="//div[@class= 'app-details']/h3")],
+                                keywords=[]),
+                            attr='click',
+                            ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Assign(
+                    targets=[
+                        Name(id='client_id', ctx=Store())],
+                    value=Attribute(
+                        value=Subscript(
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='driver', ctx=Load()),
+                                    attr='find_elements_by_xpath',
+                                    ctx=Load()),
+                                args=[
+                                    Constant(value="//div[@class= 'app-details']/h3")],
+                                keywords=[]),
+                            slice=Constant(value=1),
+                            ctx=Load()),
+                        attr='text',
+                        ctx=Load())),
+                Assign(
+                    targets=[
+                        Name(id='client_secret', ctx=Store())],
+                    value=Attribute(
+                        value=Subscript(
+                            value=Call(
+                                func=Attribute(
+                                    value=Name(id='driver', ctx=Load()),
+                                    attr='find_elements_by_xpath',
+                                    ctx=Load()),
+                                args=[
+                                    Constant(value="//tbody/tr/td[@class= 'prefright']")],
+                                keywords=[]),
+                            slice=Constant(value=0),
+                            ctx=Load()),
+                        attr='text',
+                        ctx=Load())),
+                Assign(
+                    targets=[
+                        Name(id='bpaccounts', ctx=Store())],
+                    value=Call(
+                        func=Attribute(
+                            value=Name(id='Account', ctx=Load()),
+                            attr='load',
+                            ctx=Load()),
+                        args=[
+                            Name(id='ACCOUNTS_PATH', ctx=Load())],
+                        keywords=[])),
+                Assign(
+                    targets=[
+                        Name(id='account', ctx=Store())],
+                    value=Call(
+                        func=Name(id='Account', ctx=Load()),
+                        args=[],
+                        keywords=[
+                            keyword(
+                                arg='user_agent',
+                                value=Name(id='useragent', ctx=Load())),
+                            keyword(
+                                arg='client_id',
+                                value=Name(id='client_id', ctx=Load())),
+                            keyword(
+                                arg='client_secret',
+                                value=Name(id='client_secret', ctx=Load())),
+                            keyword(
+                                arg='username',
+                                value=Name(id='username', ctx=Load())),
+                            keyword(
+                                arg='password',
+                                value=Name(id='password', ctx=Load())),
+                            keyword(
+                                arg='email',
+                                value=Constant(value='')),
+                            keyword(
+                                arg='post_karma',
+                                value=Constant(value=1)),
+                            keyword(
+                                arg='comment_karma',
+                                value=Constant(value=0)),
+                            keyword(
+                                arg='state',
+                                value=Constant(value='aging')),
+                            keyword(
+                                arg='active_hours',
+                                value=Constant(value='')),
+                            keyword(
+                                arg='last_comment',
+                                value=Constant(value=0)),
+                            keyword(
+                                arg='last_post',
+                                value=Constant(value=0)),
+                            keyword(
+                                arg='age',
+                                value=Constant(value=0)),
+                            keyword(
+                                arg='port',
+                                value=Name(id='port', ctx=Load()))])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Name(id='accounts', ctx=Load()),
+                            attr='append',
+                            ctx=Load()),
+                        args=[
+                            Name(id='account', ctx=Load())],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='Saving new account...')],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Name(id='driver', ctx=Load()),
+                            attr='close',
+                            ctx=Load()),
+                        args=[],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Attribute(
+                            value=Name(id='Account', ctx=Load()),
+                            attr='save',
+                            ctx=Load()),
+                        args=[
+                            Name(id='accounts', ctx=Load()),
+                            Name(id='ACCOUNTS_PATH', ctx=Load())],
+                        keywords=[])),
+                Expr(
+                    value=Call(
+                        func=Name(id='log', ctx=Load()),
+                        args=[
+                            Constant(value='Success! Done.')],
+                        keywords=[])),
+                Assign(
+                    targets=[
+                        Name(id='failed_counter', ctx=Store())],
+                    value=Constant(value=0))],
+            orelse=[])],
+    type_ignores=[])

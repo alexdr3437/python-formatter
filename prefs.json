@@ -1,0 +1,10 @@
+{
+	"indent" : 4,
+	"import_groups" :
+		[
+			["selenium", "requests"],
+			["numpy", "scipy", "pandas"],
+			["threading", "subprocess"]
+		],
+	"sort" : true
+}

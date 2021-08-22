@@ -32,10 +32,10 @@ from settings import *
 from kill import kill_all
 
 
-def log(S, end='\n'):
+def log(S, N = "\n"):
 	with open(ACCOUNT_LOG_PATH, 'a') as f:
 		f.write("{} : {}{}".format(datetime.now().strftime("%b-%d-%Y %H:%M:%S"), S, end))
-	if verbose: print(S, end=end)
+	if verbose: print(S, end= end)
 
 if not verbose:
 	print = log
@@ -45,7 +45,7 @@ def modify_name(username):
 	if random.uniform(0,1) < .5:
 		username = username.lower()
 
-	if random.uniform(0,1) < 0.5:
+	if random.uniform(0,1)<0.5:
 		username = username.replace("-", "").replace("_", "")
 
 	return username
@@ -63,10 +63,13 @@ while True:
     log("")    
     log("CREATE ACCOUNT SCRIPT HAS STARTED")
 
-	account_created = False
-	failed_counter = -1
-    while account_created == False:
-		failed_counter = failed_counter + 1
+    # comment!
+
+
+	account_created=False
+	failed_counter=-1
+    while account_created==False:
+		failed_counter = failed_counter+ 1 * 3 + 1
 
 		if (failed_counter and DEPLOYED):
 			log("Change Tor circuit....")
@@ -82,30 +85,30 @@ while True:
 		profile = webdriver.FirefoxProfile()
 		# Socks5 Host SetUp:-
 		if DEPLOYED:
-			profile.set_preference('network.proxy.type', 1)
+			profile.set_preference(   'network.proxy.type',1 )
 			profile.set_preference('network.proxy.socks', '127.0.0.1')
 			profile.set_preference('network.proxy.socks_port', int(port))
 		profile.set_preference("general.useragent.override", useragent)
 
-		driver = webdriver.Firefox(firefox_profile=profile)
+		driver = webdriver.Firefox(firefox_profile= profile)
 
 		try:
 
 			log("Getting webpage...")
-			driver.get("https://www.reddit.com/register/?dest=https%3A%2F%2Fwww.reddit.com%2F")
+			driver.get("https://www.reddit.com/register/?dest= https%3A%2F%2Fwww.reddit.com%2F")
 
 			# log("Exiting... Good luck.")
 			# exit(0)
 
 			log("Proceeding to register page")
-			continue_btn = get_element("//button[@type='submit']")
+			continue_btn = get_element("//button[@type= 'submit']")
 			human_like_mouse_move(driver, continue_btn)
 			continue_btn.click()
 
 			wait()
 
 			log("Generating username and password...")
-			username = get_element("//a[@class='Onboarding__usernameSuggestion']").text
+			username = get_element("//a[@class= 'Onboarding__usernameSuggestion']").text
 			password = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(12))
 
 			username = modify_name(username)
@@ -114,27 +117,27 @@ while True:
 
 
 			wait()
-			type_like_a_human(get_element("//input[@id='regUsername']"), username)
+			type_like_a_human(get_element("//input[@id= 'regUsername']"), username)
 			wait()
-			type_like_a_human(get_element("//input[@id='regPassword']"), password)
+			type_like_a_human(get_element("//input[@id= 'regPassword']"), password)
 
 
 			long_wait()
 
-			captcha_frame = get_element("//iframe[@title='reCAPTCHA']")
+			captcha_frame = get_element("//iframe[@title= 'reCAPTCHA']")
 			driver.switch_to.frame(captcha_frame)
 
 			wait()
 
 			log("Solving CAPTCHA")
-			chk_box = get_element_t("//span[@id='recaptcha-anchor']", 60)
+			chk_box = get_element_t("//span[@id= 'recaptcha-anchor']", 60)
 			human_like_mouse_move(driver, chk_box)
 			chk_box.click()
 
 			wait()
 
 			driver.switch_to.parent_frame()
-			challenge_frame = get_element("//iframe[@title='recaptcha challenge']")
+			challenge_frame = get_element("//iframe[@title= 'recaptcha challenge']")
 			driver.switch_to.frame(challenge_frame)
 
 			wait()
@@ -169,7 +172,7 @@ while True:
 
 			long_wait()
 
-			btn = get_element("//button[@id='create-app-button']")
+			btn = get_element("//button[@id= 'create-app-button']")
 			btn.click()
 			break
 
@@ -179,21 +182,21 @@ while True:
 
 	log("Filling out information...")
 	wait()
-	type_like_a_human( get_element("//input[@name='name']"), ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)) )
+	type_like_a_human( get_element("//input[@name= 'name']"), ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)) )
 	wait()
-	get_element("//input[@id='app_type_script']").click()
+	get_element("//input[@id= 'app_type_script']").click()
 	wait()
-	type_like_a_human( get_element("//input[@name='about_url']"), "http://localhost:")
+	type_like_a_human( get_element("//input[@name= 'about_url']"), "http://localhost:")
 	wait()
-	type_like_a_human( get_element("//input[@name='redirect_uri']"), "http://localhost:")
+	type_like_a_human( get_element("//input[@name= 'redirect_uri']"), "http://localhost:")
 	wait()
-	get_element("//button[@type='submit']").click()
+	get_element("//button[@type= 'submit']").click()
 
 	log("Retrieving id and secret...")
 
-	get_element("//div[@class='app-details']/h3").click()
-	client_id = driver.find_elements_by_xpath("//div[@class='app-details']/h3")[1].text
-	client_secret = driver.find_elements_by_xpath("//tbody/tr/td[@class='prefright']")[0].text
+	get_element("//div[@class= 'app-details']/h3").click()
+	client_id = driver.find_elements_by_xpath("//div[@class= 'app-details']/h3")[1].text
+	client_secret = driver.find_elements_by_xpath("//tbody/tr/td[@class= 'prefright']")[0].text
 
 	bpaccounts = Account.load(ACCOUNTS_PATH)
 
