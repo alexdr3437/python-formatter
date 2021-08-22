@@ -1,3 +1,9 @@
+
+#custom
+output.ast
+output.py
+accountcreator.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
