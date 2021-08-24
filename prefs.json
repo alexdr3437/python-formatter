@@ -1,10 +1,338 @@
 {
 	"indent" : 4,
+	"default_linebreak" : 1,
+
+	"LINES_BEFORE_IF" : 1,
+	"LINES_AFTER_IF" : 1,
+
+	"LINES_BEFORE_FOR" : 1,
+	"LINES_AFTER_FOR" : 0,
+
+	"LINES_BEFORE_WHILE" : 2,
+	"LINES_AFTER_WHILE" : 0,
+
+	"LINES_BEFORE_WITH" : 2,
+	"LINES_AFTER_WITH" : 0,
+
+	"LINES_BEFORE_DEF" : 2,
+	"LINES_AFTER_DEF" : 0,
+
+	"LINES_BEFORE_CLASS" : 2,
+	"LINES_AFTER_CLASS" : 0,
+
+	"LINES_BEFORE_COMMENT" : 1,
+	"LINES_AFTER_COMMENT" : 0,
+
+
+
 	"import_groups" :
-		[
-			["selenium", "requests"],
-			["numpy", "scipy", "pandas"],
-			["threading", "subprocess"]
-		],
+		{  
+		 	"Text Processing Services" : [	
+		 			"string",
+					"re",
+					"difflib",
+					"textwrap",
+					"unicodedata",
+					"stringprep",
+					"readline",
+					"rlcompleter"
+					 ],
+		 	"Binary Data Services" : [	
+		 			"struct",
+					"codecs"
+					 ],
+		 	"Data Types" : [	
+		 			"datetime",
+					"zoneinfo",
+					"calendar",
+					"collections",
+					"collections.abc",
+					"heapq",
+					"bisect",
+					"array",
+					"weakref",
+					"types",
+					"copy",
+					"pprint",
+					"reprlib",
+					"enum",
+					"graphlib"
+					 ],
+			"Numeric and Mathematical Modules" : [	
+					"numbers",
+					"math",
+					"cmath",
+					"decimal",
+					"fractions",
+					"random",
+					"statistics",
+					"numpy",
+					"scipy"
+					 ],
+		 	"Functional Programming Modules" : [	
+		 			"itertools",
+					"functools",
+					"operator"
+					 ],
+			"File and Directory Access" : [	
+					"pathlib",
+					"os.path",
+					"fileinput",
+					"stat",
+					"filecmp",
+					"tempfile",
+					"glob",
+					"fnmatch",
+					"linecache",
+					"shutil"
+					 ],
+		 	"Data Persistence" : [	
+		 			"pickle",
+					"copyreg",
+					"shelve",
+					"marshal",
+					"dbm",
+					"sqlite3"
+					 ],
+		 	"Data Compression and Archiving" : [	
+		 			"zlib",
+					"gzip",
+					"bz2",
+					"lzma",
+					"zipfile",
+					"tarfile"
+					 ],
+		 	"File Formats" : [	
+		 			"csv",
+					"configparser",
+					"netrc",
+					"xdrlib",
+					"plistlib"
+					 ],
+		 	"Cryptographic Services" : [	
+		 			"hashlib",
+					"hmac",
+					"secrets"
+					 ],
+			 "Generic Operating System Services" : [	
+			 		"os",
+					"io",
+					"time",
+					"argparse",
+					"getopt",
+					"logging",
+					"logging.config",
+					"logging.handlers",
+					"getpass",
+					"curses",
+					"curses.textpad",
+					"curses.ascii",
+					"curses.panel",
+					"platform",
+					"errno",
+					"ctypes"
+					 ],
+		 	"Concurrent Execution" : [	
+		 			"threading",
+					"multiprocessing",
+					"multiprocessing.shared_memory",
+					"concurrent.futures",
+					"subprocess",
+					"sched",
+					"queue",
+					"contextvars",
+					"_thread"
+					 ],
+		 	"Networking and Interprocess Communication" : [	
+		 			"asyncio",
+					"socket",
+					"ssl",
+					"select",
+					"selectors",
+					"asyncore",
+					"asynchat",
+					"signal",
+					"mmap",
+					"requests",
+					"selenium"
+					 ],
+			 "Internet Data Handling" : [	
+			 		"email",
+					"json",
+					"mailcap",
+					"mailbox",
+					"mimetypes",
+					"base64",
+					"binhex",
+					"binascii",
+					"quopri",
+					"uu"
+					 ],
+		 	"Structured Markup Processing Tools" : [	
+		 			"html",
+					"html.parser",
+					"html.entities",
+					"XML Processing Modules",
+					"xml.etree.ElementTree",
+					"xml.dom",
+					"xml.dom.minidom",
+					"xml.dom.pulldom",
+					"xml.sax",
+					"xml.sax.handler",
+					"xml.sax.saxutils",
+					"xml.sax.xmlreader",
+					"xml.parsers.expat",
+					"bs4"
+					 ],
+		 	"Internet Protocols and Support" : [	
+		 			"webbrowser",
+					"cgi",
+					"cgitb",
+					"wsgiref",
+					"urllib",
+					"urllib.request",
+					"urllib.response",
+					"urllib.parse",
+					"urllib.error",
+					"urllib.robotparser",
+					"http",
+					"http.client",
+					"ftplib",
+					"poplib",
+					"imaplib",
+					"nntplib",
+					"smtplib",
+					"smtpd",
+					"telnetlib",
+					"uuid",
+					"socketserver",
+					"http.server",
+					"http.cookies",
+					"http.cookiejar",
+					"xmlrpc",
+					"xmlrpc.client",
+					"xmlrpc.server",
+					"ipaddress"
+					 ],
+			 "Multimedia Services" : [	
+			 		"audioop",
+					"aifc",
+					"sunau",
+					"wave",
+					"chunk",
+					"colorsys",
+					"imghdr",
+					"sndhdr",
+					"ossaudiodev"
+					 ],
+		 	"Internationalization" : [	
+		 			"gettext",
+					"locale"
+					 ],
+			 "Program Frameworks" : [	
+			 		"turtle",
+					"cmd",
+					"shlex"
+					 ],
+			 "Graphical User Interfaces with Tk" : [	
+			 		"tkinter"
+					 ],
+			 "Development Tools" : [		
+			 		"typing",
+					"pydoc",
+					"doctest",
+					"unittest",
+					"test"
+					 ],
+			 "Debugging and Profiling" : [
+					"bdb",
+					"faulthandler",
+					"pdb",
+					"timeit",
+					"trace",
+					"tracemalloc"
+					 ],
+			 "Software Packaging and Distribution" : [	
+			 		"distutils",
+					"ensurepip",
+					"venv",
+					"zipapp"
+					 ],
+		 	"Python Runtime Services" : [	
+		 			"sys",
+					"sysconfig",
+					"builtins",
+					"warnings",
+					"dataclasses",
+					"contextlib",
+					"abc",
+					"atexit",
+					"traceback",
+					"__future__",
+					"gc",
+					"inspect",
+					"site"
+					 ],
+			 "Custom Python Interpreters" : [	
+			 		"code",
+					"codeop"
+					 ],
+			 "Importing Modules" : [	
+			 		"zipimport",
+					"pkgutil",
+					"modulefinder",
+					"runpy",
+					"importlib"
+					 ],
+		 	"Python Language Services" : [	
+		 			"parser",
+					"ast",
+					"symtable",
+					"symbol",
+					"token",
+					"keyword",
+					"tokenize",
+					"tabnanny",
+					"pyclbr",
+					"py_compile",
+					"compileall",
+					"dis",
+					"pickletools"
+					 ],
+ 			"Miscellaneous Services" : [	
+ 					"formatter"
+			 		],
+ 			"MS Windows Specific Services" : [	
+ 					"msilib",
+					"msvcrt",
+					"winreg",
+					"winsound"
+					 ],
+ 			"Unix Specific Services" : [	
+ 					"posix",
+					"pwd",
+					"spwd",
+					"grp",
+					"crypt",
+					"termios",
+					"tty",
+					"pty",
+					"fcntl",
+					"pipes",
+					"resource",
+					"nis",
+					"syslog"
+					 ],
+ 			"Superseded Modules" : [	
+ 					"optparse",
+					"imp"
+					 ],
+
+ 			"Machine Learning and AI" : [	
+ 					"cv2",
+ 					"tensorflow",
+ 					"speech_recognition"
+					 ]
+		},
 	"sort" : true
 }
