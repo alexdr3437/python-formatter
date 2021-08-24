@@ -25,6 +25,8 @@
 
 
 
+	"sort" : true,
+
 	"import_groups" :
 		{  
 		 	"Text Processing Services" : [	
@@ -333,6 +335,5 @@
  					"tensorflow",
  					"speech_recognition"
 					 ]
-		},
-	"sort" : true
+	}
 }

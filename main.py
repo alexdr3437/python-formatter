@@ -421,8 +421,10 @@ def parse_node(content, node, level, nested='False'):
 		elif node.targets[0].id[None:3] == 'cmt':
 			content = content.strip()
 
+			ntabs = int(node.targets[0].id.split("_")[1])
+
 			content = add_linebreak(content, t = 'LINES_BEFORE_COMMENT')
-			content += ((('\n\n' + ('\t'*level)) + '# ') + node.value.value.strip())
+			content += (('\t'*ntabs) + '# ') + node.value.value.strip()
 			content = add_linebreak(content, t = 'LINES_AFTER_COMMENT')
 
 		content = add_newl(content)
@@ -868,13 +870,13 @@ def main():
 		if 'g__custom_group' in prefs and prefs['g__custom_group']:
 			prefs['import_groups'].append(args['g__custom_group'][0])
 
-			#  Open and read file
+	#  Open and read file
 
 
 	with open(args['input'], 'r') as inp:
 		content = inp.read()
 
-		#  convert tabs to spaces, trim trailing whitespace
+	#  convert tabs to spaces, trim trailing whitespace
 
 	content = clean_whitespace(content, indent = prefs['indent'])
 
@@ -887,10 +889,18 @@ def main():
 	content = re.sub("(')(.*)(#)(.*|)(')", f'\\1\\2ht_{ht_uuid}\\4\\5', content)
 	content = re.sub('(\\")(.*)(#)(.*|)(\\")', f'\\1\\2ht_{ht_uuid}\\4\\5', content)
 
-	content = re.sub('(\\n[\\s]+)#(.*)', '\ncmt_{0} = "\\2"'.format(cmt_uuid), content)
+	content = re.sub('(\\n)([\\t]+)#(.*)', '\n\\2cmt_{0} = "\\3"'.format(cmt_uuid), content)
 	content = re.sub('([\t]+)(.*)#(.*)', '\ncmtn_{0} = "\\3"'.format(cmt_uuid), content)
 
 	content = content.replace(f'ht_{ht_uuid}', '#')
+
+	# find all comments and add number of preceding tabs to the name
+	while (m := re.search(f"([\\t]+)cmt_{cmt_uuid}", content)):
+		s = m.group(0)
+
+		count = s.count("\t")
+		content = content.replace(s, f"cmt_{count}_{cmt_uuid}", 1)
+
 
 	comments = re.findall('cmt_{0} = "(.*)"'.format(cmt_uuid), content)
 
@@ -904,15 +914,15 @@ def main():
 	for c in comments:
 		content = content.replace(c, c.replace('"', '\\"'))
 
-
-	while re.search(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmt_{cmt_uuid}', content):
-		content = re.sub(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmt_{cmt_uuid}', f'\\1\\2\\3\\n\\1cmt_{cmt_uuid}', content)
+	while (m := re.search(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmt_([\\d]+)_{cmt_uuid}', content)):
+		print(m.group(0))
+		content = re.sub(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmt_(\\d)_{cmt_uuid}', f'\\1\\2\\3\\n\\1cmt_\\7_{cmt_uuid}', content)
 
 
 	while re.search(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmtn_{cmt_uuid}', content):
 		content = re.sub(f'(?m)([\\t]+)([^\\t]+)((\\(([^\\(]+)\\))|)([\\n]+)cmtn_{cmt_uuid}', f'\\1\\2\\3\\n\\1cmtn_{cmt_uuid}', content)
 
-		#  add whitespace decorators
+	#  add whitespace decorators
 
 	ws_uuid = ''.join(random.choice(string.ascii_lowercase) for i in range(5))
 	content = re.sub('(?m)([\\t]+)([^\\t:]+)(^\\n)', f'\\1\\2\\nws_{ws_uuid} = 0\\n', content)
@@ -924,7 +934,7 @@ def main():
 	with open(args['output'], 'w') as outp:
 		outp.write(content)
 
-		#  Create AST
+	#  Create AST
 
 
 	with open('output.ast', 'w') as fp:
@@ -945,7 +955,7 @@ def main():
 		elif type(node) == ast.ImportFrom:
 			imports.append((node.module, node))
 
-			#  Sort imports into groups
+	#  Sort imports into groups
 
 	groups = []
 	added = []
